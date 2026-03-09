@@ -1,39 +1,43 @@
-import java.util.LinkedList;
+/**
+ * ==============================================================
+ * MAIN CLASS - UseCase10PalindromeCheckerApp
+ * ==============================================================
+ *
+ * Use Case 10: Normalized Palindrome Validation
+ *
+ * Description:
+ * This class validates a palindrome after preprocessing
+ * the input string.
+ *
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
+ *
+ * Example:
+ * "A man a plan a canal Panama"
+ */
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UC8
-     */
     public static void main(String[] args) {
 
-        // Define the input string (Hardcoded)
-        String input = "level";
+        // Hardcoded input
+        String input = "A man a plan a canal Panama";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        // Normalize string
+        String normalized = input.replaceAll("[^a-zA-Z]", "").toLowerCase();
 
-        // Add each character of the string into the LinkedList
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
-
-        // Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // Compare first and last characters until list size <= 1
-        while (list.size() > 1) {
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
 
-            char first = list.removeFirst();
-            char last = list.removeLast();
-
-            if (first != last) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Print result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
