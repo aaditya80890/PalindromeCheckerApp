@@ -1,40 +1,57 @@
-import java.util.LinkedList;
+/**
+ * ==============================================================
+ * MAIN CLASS - UseCase9PalindromeCheckerApp
+ * ==============================================================
+ *
+ * Use Case 9: Recursive Palindrome Checker
+ *
+ * Description:
+ * This class validates a palindrome using recursion.
+ * Characters are compared from the outer positions
+ * moving inward using recursive calls.
+ *
+ * The recursion stops when:
+ * - All characters are matched, or
+ * - A mismatch is found.
+ *
+ * This use case demonstrates divide-and-conquer
+ * logic using method recursion.
+ *
+ * @author Aaditya Rauniyar
+ * @version 9.0
+ */
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC8
+     * Application entry point for UC9.
+     * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Define the input string (Hardcoded)
-        String input = "level";
+        // Hardcoded input
+        String input = "madam";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        boolean result = check(input, 0, input.length() - 1);
 
-        // Add each character of the string into the LinkedList
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
-
-        // Flag to track palindrome status
-        boolean isPalindrome = true;
-
-        // Compare first and last characters until list size <= 1
-        while (list.size() > 1) {
-
-            char first = list.removeFirst();
-            char last = list.removeLast();
-
-            if (first != last) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Print result
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+
+    private static boolean check(String s, int start, int end) {
+
+        // Base condition
+        if (start >= end) {
+            return true;
+        }
+
+        // If characters don't match
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call
+        return check(s, start + 1, end - 1);
     }
 }
