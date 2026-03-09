@@ -1,50 +1,39 @@
-/**
- * ============================================================
- * MAIN CLASS - UseCase7PalindromeCheckerApp
- * ============================================================
- *
- * Use Case 7: Deque Based Optimized Palindrome Checker (Hardcoded)
- *
- * Description:
- * This class validates a palindrome using a Deque
- * (Double Ended Queue).
- *
- * Characters are inserted into the deque and then
- * compared by removing elements from both ends:
- * - removeFirst()
- * - removeLast()
- *
- * This avoids reversing the string and provides
- * efficient bidirectional comparison.
- *
- * @author Aaditya Rauniyar
- * @version 7.0
- */
-
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC7.
+     * Application entry point for UC8
      */
     public static void main(String[] args) {
-        String input = "refer";
-        Deque<Character> deque = new ArrayDeque<>();
+
+        // Define the input string (Hardcoded)
+        String input = "level";
+
+        // Create LinkedList to store characters
+        LinkedList<Character> list = new LinkedList<>();
+
+        // Add each character of the string into the LinkedList
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
+
+        // Flag to track palindrome status
         boolean isPalindrome = true;
-        while (deque.size() > 1) {
-            char first = deque.removeFirst();
-            char last = deque.removeLast();
+
+        // Compare first and last characters until list size <= 1
+        while (list.size() > 1) {
+
+            char first = list.removeFirst();
+            char last = list.removeLast();
+
             if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
+        // Print result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
